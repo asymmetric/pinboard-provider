@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link id="siteicon" rel="icon" href="./images/pinboard64.png"/>
+    <title>Save bookmark to pinboard</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    function onLoad() {
+      $("#shared").text(location.search);
+      socialMarkUpdate(true);
+    }
+    function socialMarkUpdate(isMarked) {
+        var evt = document.createEvent("CustomEvent");
+        evt.initCustomEvent("socialMarkUpdate", true, true, JSON.stringify({marked: isMarked}));
+        document.documentElement.dispatchEvent(evt);
+    }
+
+    var shareData;
+    addEventListener("OpenGraphData", function(e) {
+      shareData = JSON.parse(e.detail);
+      $("#shared").text(shareData.url);
+      $("#data").text(e.detail);
+      socialMarkUpdate(true);
+    });
+    </script>
+</head>
+
+<body onload="onLoad()" contentid="content">
+  <div id="content">
+    <h3>This window shares the url</h3>
+    <div>Page Marked: <div id="shared" class="textbox"></div></div>
+    <div>Data: <div id="data" class="textbox"></div></div>
+    <button onclick="socialMarkUpdate(false); window.close()">Unmark</button>
+    <button onclick="window.close();">Close</button>
+  </div>
+</body>
+</html>
