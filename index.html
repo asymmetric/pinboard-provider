@@ -1,0 +1,36 @@
+<html>
+<head>
+  <title>Pinboard Bookmarking</title>
+</head>
+<script>
+var loc = location.href;
+var baseurl = loc.substring(0,loc.lastIndexOf('/'));
+
+var data = {
+  // currently required
+  "name": "Pinboard Bookmarking",
+  "iconURL": baseurl+"/firefox16.png",
+  "icon32URL": baseurl+"/firefox32.png",
+  "icon64URL": baseurl+"/firefox64.png",
+
+  "sidebarURL": baseurl+"/sidebar.html",
+
+  // should be available for display purposes
+  "description": "A provider to bookmark URLs to pinboard",
+  "author": "Lorenzo Manacorda",
+  "homepageURL": "https://github.com/asymmetric/pinboard-provider/",
+
+  // optional
+  "version": "0.1"
+}
+
+function activate(node) {
+  var event = new CustomEvent("ActivateSocialFeature");
+  node.setAttribute("data-service", JSON.stringify(data));
+  node.dispatchEvent(event);
+}
+</script>
+<body>
+  <button onclick="activate(this)" title="activate the pinboard bookmarking provider">Activate The Pinboard Bookmarking Provider</button>
+</body>
+</html>
