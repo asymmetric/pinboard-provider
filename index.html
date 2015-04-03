@@ -10,12 +10,12 @@ var baseurl = loc.substring(0,loc.lastIndexOf('/'));
 var data = {
   // currently required
   "name": "Pinboard",
-  "iconURL": baseurl+"/images/pinboard16.png",
-  "icon32URL": baseurl+"/images/pinboard32.png",
-  "icon64URL": baseurl+"/images/pinboard64.png",
+  "iconURL":   baseurl+"/images/pinboard16.png",
+  "icon32URL": baseurl+"/images/pinboard16.png",
+  "icon64URL": baseurl+"/images/pinboard16.png",
 
-  "markURL": "https://pinboard.in/add?showtags=yes",
-  "markedIcon": baseurl+"/images/pinboard16.png",
+  "markURL": "https://pinboard.in/add?showtags=yes&url=%{url}&description=%{description}&title=%{title}",
+  "markedIcon":   baseurl+"/images/pinboard16.png",
   "unmarkedIcon": baseurl+"/images/pinboard16.png",
 
   "activities": {
